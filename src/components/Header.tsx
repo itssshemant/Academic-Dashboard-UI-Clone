@@ -1,7 +1,7 @@
 import { Bell, Mail, Menu, LogOut } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 import { supabase } from '../utils/supabase/client';
-import profileImage from 'figma:asset/d37a11c989f8c04360099201ffc62d9d4ae0a4c4.png';
+import profileImage from 'figma:asset/528e1afbb8972e8e2e7979ec1531b2e6d548480f.png';
 
 interface HeaderProps {
   onMenuClick: () => void;

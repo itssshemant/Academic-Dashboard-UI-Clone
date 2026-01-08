@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-import logo from 'figma:asset/d54fdb9c2fb0c7d2dbec35ce6b388ea5a264634f.png';
+import logoFull from 'figma:asset/97c2a527215d4815f31fb2d6d63560240c905711.png';
 
 interface Course {
   slNo: number;
@@ -64,11 +64,8 @@ export function CourseRegistrationPDF({ courses, onClose }: CourseRegistrationPD
         {/* PDF Content */}
         <div className="p-8 bg-white" id="pdf-content">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-black">
-            <img src={logo} alt="IIIT-Delhi Logo" className="h-12 object-contain" />
-            <h1 className="text-lg font-semibold text-center flex-1">
-              Indraprastha Institute of Information Technology, Delhi
-            </h1>
+          <div className="flex items-center justify-center mb-6 pb-4 border-b-2 border-black">
+            <img src={logoFull} alt="IIIT-Delhi Logo" className="h-16 object-contain" />
           </div>
 
           {/* Title */}

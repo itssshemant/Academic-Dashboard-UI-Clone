@@ -12,8 +12,8 @@ import {
   Search,
   X
 } from 'lucide-react';
-import logo from 'figma:asset/d54fdb9c2fb0c7d2dbec35ce6b388ea5a264634f.png';
 import { PageType } from '/App';
+import logoSmall from 'figma:asset/d54fdb9c2fb0c7d2dbec35ce6b388ea5a264634f.png';
 
 const menuItems = [
   { id: 'dashboard' as PageType, label: 'Dashboard', icon: LayoutDashboard },
@@ -57,7 +57,7 @@ export function Sidebar({ isOpen, onClose, currentPage, onNavigate }: SidebarPro
           {/* Logo & Close Button */}
           <div className="p-6 border-b border-gray-200 flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <img src={logo} alt="IIIT-Delhi Logo" className="w-10 h-10 object-contain" />
+              <img src={logoSmall} alt="IIIT-Delhi Logo" className="w-10 h-10 object-contain" />
               <div>
                 <div className="font-semibold text-gray-900">IIIT DELHI</div>
                 <div className="text-xs text-gray-500">Student Portal</div>
