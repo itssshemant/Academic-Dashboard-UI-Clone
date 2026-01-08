@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'sonner@2.0.3';
 import { supabase } from '../utils/supabase/client';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
-import logoFull from 'figma:asset/97c2a527215d4815f31fb2d6d63560240c905711.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface LoginPageProps {
   onLoginSuccess: () => void;
@@ -85,7 +85,11 @@ export function LoginPage({ onLoginSuccess }: LoginPageProps) {
         <div className="p-6 sm:p-8 md:p-12">
           {/* Logo */}
           <div className="mb-6 sm:mb-8 text-center">
-            <img src={logoFull} alt="IIIT-Delhi" className="h-16 sm:h-20 mx-auto mb-3 sm:mb-4 object-contain" />
+            <ImageWithFallback
+              src="figma:asset/97c2a527215d4815f31fb2d6d63560240c905711.png"
+              alt="IIIT-Delhi"
+              className="h-16 sm:h-20 mx-auto mb-3 sm:mb-4 object-contain"
+            />
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Sign-in to your ERP</h1>
             <p className="text-xs sm:text-sm text-gray-600">Indraprastha Institute of Information Technology, Delhi</p>
           </div>

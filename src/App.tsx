@@ -67,16 +67,43 @@ export default function App() {
 
     // Check if user has an active session
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        localStorage.setItem('access_token', session.access_token);
-        setIsAuthenticated(true);
-      } else {
-        // Check for stored access token
-        const storedToken = localStorage.getItem('access_token');
-        if (storedToken) {
-          setIsAuthenticated(true);
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        if (error) {
+          console.error('Session error:', error);
+          // Clear invalid session data
+          localStorage.removeItem('access_token');
+          await supabase.auth.signOut();
+          setIsAuthenticated(false);
+          setIsLoading(false);
+          return;
         }
+        
+        if (session) {
+          localStorage.setItem('access_token', session.access_token);
+          setIsAuthenticated(true);
+        } else {
+          // Check for stored access token
+          const storedToken = localStorage.getItem('access_token');
+          if (storedToken) {
+            // Verify token is still valid by trying to get user
+            const { error: userError } = await supabase.auth.getUser();
+            if (userError) {
+              // Token is invalid, clear it
+              localStorage.removeItem('access_token');
+              setIsAuthenticated(false);
+            } else {
+              setIsAuthenticated(true);
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error checking session:', error);
+        // Clear any invalid data
+        localStorage.removeItem('access_token');
+        await supabase.auth.signOut();
+        setIsAuthenticated(false);
       }
       setIsLoading(false);
     };
@@ -84,11 +111,21 @@ export default function App() {
     checkSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (event === 'TOKEN_REFRESHED') {
+        console.log('Token refreshed successfully');
+      }
+      
+      if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('user_email');
+        setIsAuthenticated(false);
+      }
+      
       if (session) {
         localStorage.setItem('access_token', session.access_token);
         setIsAuthenticated(true);
-      } else {
+      } else if (event !== 'INITIAL_SESSION') {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user_email');
         setIsAuthenticated(false);

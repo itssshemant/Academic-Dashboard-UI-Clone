@@ -1,6 +1,6 @@
 import { X } from 'lucide-react';
 import { useEffect } from 'react';
-import logoFull from 'figma:asset/97c2a527215d4815f31fb2d6d63560240c905711.png';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 interface Course {
   slNo: number;
@@ -61,7 +61,11 @@ export function GradesPDF({ semester1Courses, onClose }: GradesPDFProps) {
         <div className="p-8 bg-white" id="grades-pdf-content">
           {/* Header */}
           <div className="flex items-center justify-center mb-6 pb-4 border-b-2 border-black">
-            <img src={logoFull} alt="IIIT-Delhi Logo" className="h-16 object-contain" />
+            <ImageWithFallback
+              src="figma:asset/97c2a527215d4815f31fb2d6d63560240c905711.png"
+              alt="IIIT-Delhi Logo"
+              className="h-16 object-contain"
+            />
           </div>
 
           {/* Title */}

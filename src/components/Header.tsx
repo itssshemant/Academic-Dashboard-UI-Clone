@@ -1,7 +1,7 @@
 import { Bell, Mail, Menu, LogOut } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 import { supabase } from '../utils/supabase/client';
-import profileImage from 'figma:asset/528e1afbb8972e8e2e7979ec1531b2e6d548480f.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -82,8 +82,8 @@ export function Header({ onMenuClick }: HeaderProps) {
             <LogOut className="w-5 h-5" />
           </button>
           
-          <img 
-            src={profileImage} 
+          <ImageWithFallback 
+            src="figma:asset/528e1afbb8972e8e2e7979ec1531b2e6d548480f.png" 
             alt="Vansh Tomar" 
             className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover border-2 border-indigo-200"
           />

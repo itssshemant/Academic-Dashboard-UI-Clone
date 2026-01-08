@@ -1,9 +1,11 @@
 import { Download } from 'lucide-react';
 import { toast } from 'sonner@2.0.3';
 import { useState } from 'react';
+import { CourseListPDF } from './CourseListPDF';
 
 export function MyCourseListPage() {
   const [selectedSemester, setSelectedSemester] = useState('Semester 2');
+  const [showPDF, setShowPDF] = useState(false);
 
   const semester1Courses = [
     { slNo: 1, courseName: 'MTH100-Maths I-Lecture-4', courseType: 'Mandatory (Core)', creditAudit: 'Credit', credit: 4, semester: 'Semester 1' },
@@ -24,9 +26,7 @@ export function MyCourseListPage() {
   const courses = selectedSemester === 'Semester 1' ? semester1Courses : semester2Courses;
 
   const handleDownloadReport = () => {
-    toast.success('Course report downloaded!', {
-      description: `Your ${selectedSemester} registered courses report has been saved.`
-    });
+    setShowPDF(true);
   };
 
   const handleSave = () => {
@@ -43,6 +43,15 @@ export function MyCourseListPage() {
 
   return (
     <div className="p-4 sm:p-6 max-w-7xl mx-auto">
+      {/* PDF Modal */}
+      {showPDF && (
+        <CourseListPDF 
+          courses={courses}
+          semester={selectedSemester}
+          onClose={() => setShowPDF(false)} 
+        />
+      )}
+
       {/* Info Banner */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
         <p className="text-xs sm:text-sm text-blue-800">
