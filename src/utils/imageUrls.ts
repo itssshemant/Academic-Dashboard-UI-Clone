@@ -10,6 +10,12 @@ export const IMAGE_URLS = {
   
   // Vansh Tomar profile picture (used in header)
   PROFILE_PICTURE: 'https://i.postimg.cc/5Nr4Zv9C/download.jpg',
+  
+  // Favicon - IIIT-Delhi icon
+  FAVICON: 'https://i.postimg.cc/zGWy7pC6/Screenshot_2026_01_08_230721.png',
+  
+  // Social sharing image - Used for Open Graph and Twitter cards
+  SOCIAL_IMAGE: 'https://i.postimg.cc/zBD3Jrsv/Screenshot_2026_01_08_230740.png',
 };
 
 // Helper to check if URL is valid
