@@ -48,7 +48,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           </button>
           <div className="min-w-0 flex-1">
             <h1 className="text-base sm:text-xl font-semibold text-gray-900 truncate">
-              Good Evening, Vansh Tomar!
+              Welcome, Vansh Tomar!
             </h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-0.5 hidden sm:block">
               Last login: Wednesday, January 7, 2026 at 10:45 AM
