@@ -3,11 +3,10 @@ import { toast } from 'sonner@2.0.3';
 
 export function FeeDetailsPage() {
   const feeBreakdown = [
-    { component: 'Tuition Fee', amount: 200000, status: 'Paid' },
-    { component: 'Hostel Fee', amount: 25000, status: 'Paid' },
-    { component: 'Mess Fee', amount: 30000, status: 'Paid' },
-    { component: 'Library Fee', amount: 5000, status: 'Paid' },
-    { component: 'Caution Deposit', amount: 10000, status: 'Paid' },
+    { component: 'Tuition Fee', amount: 225000, status: 'Paid' },
+    { component: 'Double Sharing Room (Aug - 15th Dec. 2025)', amount: 38250, status: 'Paid' },
+    { component: 'Security (Refundable)', amount: 10000, status: 'Paid' },
+    { component: 'Mess Charges (15 days coupon - Mandatory) (Aug - Nov)', amount: 8000, status: 'Paid' },
   ];
 
   const totalFee = feeBreakdown.reduce((sum, item) => sum + item.amount, 0);
