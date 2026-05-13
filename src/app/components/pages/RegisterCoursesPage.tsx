@@ -1,5 +1,5 @@
 import { Search, FileText } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { useState } from 'react';
 import { CourseRegistrationPDF } from './CourseRegistrationPDF';
 

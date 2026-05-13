@@ -1,7 +1,50 @@
 import { Printer, Download, Mail, FileText } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { useState } from 'react';
 import { GradesPDF } from './GradesPDF';
+
+const semester2Courses = [
+  {
+    slNo: 1,
+    course: 'MTH201-Probability and Statistics-Lecture-',
+    courseType: 'Mandatory (Core)',
+    credit: 4,
+    grade: 'C',
+    gradePoint: 5
+  },
+  {
+    slNo: 2,
+    course: 'CSE102-Data Structures and Algorithms-Lecture-',
+    courseType: 'Mandatory (Core)',
+    credit: 4,
+    grade: 'B+',
+    gradePoint: 8
+  },
+  {
+    slNo: 3,
+    course: 'CSE112-Computer Organization-Lecture-',
+    courseType: 'Mandatory (Core)',
+    credit: 4,
+    grade: 'B',
+    gradePoint: 7
+  },
+  {
+    slNo: 4,
+    course: 'ECO201-Principles Of Economics-Lecture-',
+    courseType: 'Mandatory (Core)',
+    credit: 4,
+    grade: 'B',
+    gradePoint: 7
+  },
+  {
+    slNo: 5,
+    course: 'ECE111-Basic Electronics-Lecture-',
+    courseType: 'Mandatory (Core)',
+    credit: 4,
+    grade: 'C+',
+    gradePoint: 6
+  }
+];
 
 const semester1Courses = [
   {
@@ -69,9 +112,10 @@ export function GradesPage() {
     <div className="p-4 sm:p-6 max-w-7xl mx-auto">
       {/* PDF Modal */}
       {showPDF && (
-        <GradesPDF 
+        <GradesPDF
           semester1Courses={semester1Courses}
-          onClose={() => setShowPDF(false)} 
+          semester2Courses={semester2Courses}
+          onClose={() => setShowPDF(false)}
         />
       )}
 
@@ -137,7 +181,7 @@ export function GradesPage() {
           <div className="p-4 bg-gray-50 font-medium text-sm text-gray-900">
             <div className="flex justify-between">
               <span>SGPA: 6.00</span>
-              <span>CGPA: 6.50</span>
+              <span>CGPA: 6.00</span>
             </div>
           </div>
         </div>
@@ -168,7 +212,7 @@ export function GradesPage() {
               ))}
               <tr className="bg-gray-50">
                 <td colSpan={5} className="px-4 py-3 text-sm font-medium text-gray-900">SGPA: 6.00</td>
-                <td className="px-4 py-3 text-sm font-medium text-gray-900">CGPA: 6.50</td>
+                <td className="px-4 py-3 text-sm font-medium text-gray-900">CGPA: 6.00</td>
               </tr>
             </tbody>
           </table>
@@ -181,11 +225,65 @@ export function GradesPage() {
           <h2 className="text-sm sm:text-base font-medium">July 2025-B.Tech/CSE-IIITD/Semester 2</h2>
         </div>
 
-        <div className="p-4 sm:p-6">
-          <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-4 font-medium">Note:</p>
-          <p className="text-xs sm:text-sm text-gray-700">
-            1. (*)-Grades have not been given or Frozen for one or more subjects for this student-Hence SGPA and CGPA not calculated.
-          </p>
+        {/* Mobile Card View */}
+        <div className="block sm:hidden divide-y divide-gray-200">
+          {semester2Courses.map((course) => (
+            <div key={course.slNo} className="p-4 space-y-2">
+              <div className="flex justify-between items-start">
+                <div className="flex-1 pr-2">
+                  <p className="text-sm font-medium text-gray-900">{course.course}</p>
+                  <p className="text-xs text-gray-600 mt-1">{course.courseType}</p>
+                </div>
+                <div className="text-right">
+                  <span className="inline-block px-2 py-1 bg-indigo-100 text-indigo-700 rounded text-sm font-semibold">
+                    {course.grade}
+                  </span>
+                </div>
+              </div>
+              <div className="flex justify-between text-xs text-gray-600">
+                <span>Credit: {course.credit}</span>
+                <span>Grade Point: {course.gradePoint}</span>
+              </div>
+            </div>
+          ))}
+          <div className="p-4 bg-gray-50 font-medium text-sm text-gray-900">
+            <div className="flex justify-between">
+              <span>SGPA: 6.60</span>
+              <span>CGPA: 6.30</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden sm:block overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Sl No.</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Course</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Course Type</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Credit</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Grade</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-700">Grade Point</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {semester2Courses.map((course) => (
+                <tr key={course.slNo} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.slNo}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.course}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.courseType}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.credit}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.grade}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900">{course.gradePoint}</td>
+                </tr>
+              ))}
+              <tr className="bg-gray-50">
+                <td colSpan={5} className="px-4 py-3 text-sm font-medium text-gray-900">SGPA: 6.60</td>
+                <td className="px-4 py-3 text-sm font-medium text-gray-900">CGPA: 6.30</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 

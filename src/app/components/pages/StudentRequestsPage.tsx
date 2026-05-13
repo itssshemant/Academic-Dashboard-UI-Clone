@@ -1,5 +1,5 @@
 import { Plus, FileX } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export function StudentRequestsPage() {
   const handleNewRequest = () => {

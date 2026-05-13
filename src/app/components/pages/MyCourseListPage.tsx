@@ -1,5 +1,5 @@
 import { Download } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { useState } from 'react';
 import { CourseListPDF } from './CourseListPDF';
 
@@ -17,10 +17,10 @@ export function MyCourseListPage() {
 
   const semester2Courses = [
     { slNo: 1, courseName: 'ECO201-Principles Of Economics', courseType: 'Open Elective', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
-    { slNo: 2, courseName: 'CSE102-Data Structures and Algorithms', courseType: 'Department Elective', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
-    { slNo: 3, courseName: 'CSE112-Computer Organization', courseType: 'Department Elective', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
-    { slNo: 4, courseName: 'ECE111-Basic Electronics', courseType: 'Open Elective', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
-    { slNo: 5, courseName: 'MTH201-Probability and Statistics', courseType: 'Department Elective', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
+    { slNo: 2, courseName: 'CSE102-Data Structures and Algorithms', courseType: 'Core', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
+    { slNo: 3, courseName: 'CSE112-Computer Organization', courseType: 'Core', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
+    { slNo: 4, courseName: 'ECE111-Basic Electronics', courseType: 'Core', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
+    { slNo: 5, courseName: 'MTH201-Probability and Statistics', courseType: 'Core', creditAudit: 'Credit', credit: 4, semester: 'Semester 2' },
   ];
 
   const courses = selectedSemester === 'Semester 1' ? semester1Courses : semester2Courses;

@@ -1,5 +1,5 @@
 import { Bell, Mail, Menu, LogOut } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 import { supabase } from '../utils/supabase/client';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 

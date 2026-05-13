@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Toaster } from 'sonner@2.0.3';
+import { Toaster } from 'sonner';
 import { supabase } from './utils/supabase/client';
 import { projectId, publicAnonKey } from './utils/supabase/info';
 import { LoadingProvider } from './contexts/LoadingContext';

@@ -13,10 +13,11 @@ interface Course {
 
 interface GradesPDFProps {
   semester1Courses: Course[];
+  semester2Courses: Course[];
   onClose: () => void;
 }
 
-export function GradesPDF({ semester1Courses, onClose }: GradesPDFProps) {
+export function GradesPDF({ semester1Courses, semester2Courses, onClose }: GradesPDFProps) {
   useEffect(() => {
     // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
@@ -33,7 +34,13 @@ export function GradesPDF({ semester1Courses, onClose }: GradesPDFProps) {
   const sem1TotalCredits = semester1Courses.reduce((sum, course) => sum + course.credit, 0);
   const sem1TotalPoints = semester1Courses.reduce((sum, course) => sum + (course.credit * course.gradePoint), 0);
   const sem1SGPA = (sem1TotalPoints / sem1TotalCredits).toFixed(2);
-  const cgpa = '6.50';
+  const cgpa = '6.00';
+
+  // Calculate totals for semester 2
+  const sem2TotalCredits = semester2Courses.reduce((sum, course) => sum + course.credit, 0);
+  const sem2TotalPoints = semester2Courses.reduce((sum, course) => sum + (course.credit * course.gradePoint), 0);
+  const sem2SGPA = (sem2TotalPoints / sem2TotalCredits).toFixed(2);
+  const finalCGPA = '6.30';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
@@ -146,9 +153,40 @@ export function GradesPDF({ semester1Courses, onClose }: GradesPDFProps) {
               <h3 className="font-semibold text-sm">July 2025 - B.Tech/CSE-IIITD / Semester 2</h3>
             </div>
 
-            <div className="border-2 border-black p-4 text-sm">
-              <p className="font-semibold mb-2">Note:</p>
-              <p>1. (*)-Grades have not been given or Frozen for one or more subjects for this student-Hence SGPA and CGPA not calculated.</p>
+            <table className="w-full border-collapse border-2 border-black mb-3 text-sm">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="border border-black px-2 py-2 text-left font-semibold">Sl. No</th>
+                  <th className="border border-black px-2 py-2 text-left font-semibold">Course</th>
+                  <th className="border border-black px-2 py-2 text-left font-semibold">Course Type</th>
+                  <th className="border border-black px-2 py-2 text-center font-semibold">Credit</th>
+                  <th className="border border-black px-2 py-2 text-center font-semibold">Grade</th>
+                  <th className="border border-black px-2 py-2 text-center font-semibold">Grade Point</th>
+                </tr>
+              </thead>
+              <tbody>
+                {semester2Courses.map((course) => (
+                  <tr key={course.slNo}>
+                    <td className="border border-black px-2 py-2 text-center">{course.slNo}</td>
+                    <td className="border border-black px-2 py-2 text-blue-700">{course.course}</td>
+                    <td className="border border-black px-2 py-2">{course.courseType}</td>
+                    <td className="border border-black px-2 py-2 text-center">{course.credit}</td>
+                    <td className="border border-black px-2 py-2 text-center font-bold">{course.grade}</td>
+                    <td className="border border-black px-2 py-2 text-center">{course.gradePoint}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="flex justify-end">
+                <span className="font-bold">SGPA:</span>
+                <span className="ml-4 text-red-700 font-bold">{sem2SGPA}</span>
+              </div>
+              <div className="flex">
+                <span className="font-bold">CGPA:</span>
+                <span className="ml-4 text-red-700 font-bold">{finalCGPA}</span>
+              </div>
             </div>
           </div>
 
