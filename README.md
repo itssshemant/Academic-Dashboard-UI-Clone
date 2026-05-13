@@ -1,7 +1,7 @@
 
-  # Academic Dashboard UI Design
+  # NuRe Campus: Empowering Higher Education for the Future
 
-  This is a code bundle for Academic Dashboard UI Design. The original project is available at https://www.figma.com/design/Y3Cnx7ZOLxIC4hwQG232ew/Academic-Dashboard-UI-Design.
+  This is a code bundle for NuRe Campus: Empowering Higher Education for the Future. The original project is available at https://www.figma.com/design/Y3Cnx7ZOLxIC4hwQG232ew/NuRe-Campus--Empowering-Higher-Education-for-the-Future.
 
   ## Running the code
 
